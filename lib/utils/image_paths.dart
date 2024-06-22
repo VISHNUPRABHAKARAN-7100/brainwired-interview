@@ -3,5 +3,5 @@ class ImagePaths {
   static const String rootPathForImages = 'assets/images/';
 
   // Company logo.
-  static const String logo = '${rootPathForImages}logo.png';
+  static const String logoPath = '${rootPathForImages}logo.png';
 }
