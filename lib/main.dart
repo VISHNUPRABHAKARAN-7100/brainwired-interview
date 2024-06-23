@@ -37,14 +37,15 @@ class MyApp extends StatelessWidget {
         ),
         // - ChangeNotifierProvider for managing state in the HomeProvider.
         ChangeNotifierProvider(
-          create: (context) => HomeProvider(),
-        )
+          create: (context) => HomeProvider()..fetchUsers(),
+        ),
       ],
       child: MediaQuery(
         data: MediaQuery.of(context).copyWith(
           textScaler: const TextScaler.linear(1),
         ),
         child: const MaterialApp(
+          debugShowCheckedModeBanner: false,
           home: SplashScreen(),
         ),
       ),
