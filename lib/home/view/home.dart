@@ -4,7 +4,7 @@ import 'package:brainwired_interview/utils/custom_enums.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../services/check_internet/connectivity_services/connectivity_services.dart';
-import '../../user_details/view/user_details.dart';
+import 'widgets/user_card.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -46,24 +46,7 @@ class Home extends StatelessWidget {
                     return ListView.builder(
                       itemBuilder: (context, index) {
                         final user = users[index];
-                        return Card(
-                          child: ListTile(
-                            onTap: () => Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => UserDetails(
-                                  id: user.id ?? 0,
-                                ),
-                              ),
-                            ),
-                            leading: CircleAvatar(
-                              child: Text(
-                                user.id?.toString() ?? 'User ID',
-                              ),
-                            ),
-                            title: Text(user.name ?? 'Name'),
-                            subtitle: Text(user.email ?? 'email'),
-                          ),
-                        );
+                        return UserCard(user: user);
                       },
                       itemCount: users.length,
                     );

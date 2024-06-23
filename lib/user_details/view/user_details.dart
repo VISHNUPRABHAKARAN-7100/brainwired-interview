@@ -13,6 +13,8 @@ class UserDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Retrieves the size of the device screen.
+    final screenWidth = MediaQuery.of(context).size.width;
     final users = context.read<HomeProvider>().users;
     final user = users.firstWhere(
       (e) => e.id == id,
@@ -21,11 +23,35 @@ class UserDetails extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'User name ${user.name ?? ''}',
+          user.name ?? '',
         ),
       ),
-      body: Center(
-        child: Text(user.name ?? 'User name'),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SizedBox(
+          width: screenWidth,
+          child: Card(
+            elevation: 2,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(user.name ?? 'User name'),
+                  Text(user.username ?? 'Username'),
+                  Text(user.email ?? 'Email'),
+                  Text(
+                    '${user.address?.street}, ${user.address?.suite}, ${user.address?.city}',
+                  ),
+                  Text(user.phone ?? 'Phone'),
+                  Text(user.website ?? 'Website'),
+                  Text(user.company?.name ?? 'Company name'),
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
